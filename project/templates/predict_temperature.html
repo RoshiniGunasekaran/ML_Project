@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Predict Temperature</title>
+</head>
+<body>
+    <h1>Predict Temperature</h1>
+    <form action="/predict" method="POST">
+        <label for="precipitation">Precipitation:</label>
+        <input type="text" id="precipitation" name="precipitation" required><br>
+        
+        <label for="wind">Wind:</label>
+        <input type="text" id="wind" name="wind" required><br>
+        
+        <label for="day_of_week">Day of Week:</label>
+        <input type="text" id="day_of_week" name="day_of_week" required><br>
+        
+        <label for="month">Month:</label>
+        <input type="text" id="month" name="month" required><br>
+        
+        <label for="year">Year:</label>
+        <input type="text" id="year" name="year" required><br>
+        
+        <input type="submit" value="Predict">
+    </form>
+</body>
+</html>
