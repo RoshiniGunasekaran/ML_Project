@@ -1,27 +1,225 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #000;
+            color: #FFF;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            filter: brightness(50%);
+        }
+        .container{
+            max-width: 650px;
+            padding: 28px;
+            margin: 0 28px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, .2);
+            box-shadow: 0 15px 20px rgba(0, 0, 0, .6);
+        }
+
+        h1, h2{
+            font-size: 26px;
+            font-weight: bold;
+            text-align: left;
+            color: #fff;
+            padding-bottom: 8px;
+            border-bottom: 1px solid silver;
+        }
+
+        form{
+            width: 100%;
+        }
+
+        .content{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px 0;
+        }
+
+        .input-box{
+            display: flex;
+            flex-wrap: wrap;
+            width: 50%;
+            padding-bottom: 15px;
+        }
+
+        .input-box:nth-child(2n){
+            justify-content: end;
+        }
+
+        .input-box label, .gender-title{
+            width: 95%;
+            color: #FFF;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .gender-title{
+            font-size: 16px;
+        }
+
+        .input-box input{
+            height: 40px;
+            width: 95%;
+            padding: 0 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        .input-box input:is(:focus,:valid){
+            box-shadow: 0 3px 6px rgba(0, 0, 0, .2);
+        }
+
+        .gender-category label{
+            padding: 0 20px 0 5px;
+            font-size: 14px;
+        }
+
+        .gender-category{
+            color: gainsboro;
+        }
+
+        .gender-category label, .gender-category input{
+            cursor: pointer;
+        }
+
+        .alert p{
+            font-size: 14px;
+            font-style: italic;
+            text-align: justify;
+            color: #fff;
+            margin: 5px 0;
+            padding: 10px;
+            line-height: 1.5;
+        }
+
+        .alert a{
+            font-weight: bold;
+            text-decoration: none;
+            color: skyblue;
+        }
+
+        .alert a:hover{
+            font-weight: bold;
+            text-decoration: underline;
+            color: #ccc;
+        }
+
+        .button-container{
+            margin: 15px 0;
+        }
+
+        .button-container button{
+            width: 100%;
+            font-weight: bold;
+            margin-top: 10px;
+            padding: 10px;
+            display: block;
+            font-size: 20px;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            background-image: linear-gradient(to right, #f7eff6, #0c60ba);
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .button-container button:hover{
+            background-image: linear-gradient(to right,#380036, #0cbaba);
+        }
+
+        @media(max-width: 600px){
+            .container{
+                min-width: 280px;
+            }
+            .content{
+                max-height: 380px;
+                overflow: auto;
+            }
+            .input-box{
+                margin-bottom: 12px;
+                width: 100%;
+            }
+            .input-box:nth-child(2n){
+                justify-content: space-between;
+            }
+            .gender-category{
+                display: flex;
+                justify-content: space-between;
+                width: 60%;
+            }
+            .content::-webkit-scrollbar{
+                width: 0;
+            }
+        }
+    </style>
     <title>Predict Temperature</title>
 </head>
 <body>
-    <h1>Predict Temperature</h1>
-    <form action="/predict" method="POST">
-        <label for="precipitation">Precipitation:</label>
-        <input type="text" id="precipitation" name="precipitation" required><br>
+    <video autoplay muted loop>
+        <source src="https://cdn.pixabay.com/video/2017/02/28/8016-206146117_large.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="container">
         
-        <label for="wind">Wind:</label>
-        <input type="text" id="wind" name="wind" required><br>
-        
-        <label for="day_of_week">Day of Week:</label>
-        <input type="text" id="day_of_week" name="day_of_week" required><br>
-        
-        <label for="month">Month:</label>
-        <input type="text" id="month" name="month" required><br>
-        
-        <label for="year">Year:</label>
-        <input type="text" id="year" name="year" required><br>
-        
-        <input type="submit" value="Predict">
-    </form>
+        <h1>Predict Temperature</h1>
+        <form action="/predict" method="POST">
+            <div class="content">
+                <div class="input-box">
+                    <label for="precipitation">Precipitation:</label>
+                    <input type="text" id="precipitation" name="precipitation" required>
+                </div>
+                
+                <div class="input-box">
+                    <label for="wind">Wind:</label>
+                    <input type="text" id="wind" name="wind" required>
+                </div>
+                
+                <div class="input-box">
+                    <label for="day_of_week">Day of Week:</label>
+                    <input type="text" id="day_of_week" name="day_of_week" required>
+                </div>
+                
+                <div class="input-box">
+                    <label for="month">Month:</label>
+                    <input type="text" id="month" name="month" required>
+                </div>
+                
+                <div class="input-box">
+                    <label for="year">Year:</label>
+                    <input type="text" id="year" name="year" required>
+                </div>
+            </div>
+            <div class="button-container">
+                <button type="submit">Predict</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

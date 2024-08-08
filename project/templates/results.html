@@ -3,16 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prediction Results</title>
+    <title>Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Prediction Results</h1>
-    {% if classifier_result %}
-        <p>{{ classifier_result }}</p>
-    {% elif regressor_result %}
-        <p>{{ regressor_result }}</p>
-    {% else %}
-        <p>No prediction was made.</p>
+    <div class="container">
+        <h1>Prediction Results</h1>
+        
+        {% if time_series_result %}
+        <h2>{{ time_series_result }}</h2>
+        {% if img_url %}
+            <img src="data:image/png;base64,{{ img_url }}" alt="Predicted Temp Max Plot">
+        {% endif %}
+        {% if formatted_temps %}
+            <ul>
+                {% for day, temp in formatted_temps.items() %}
+                    <li>Day {{ day }}: {{ temp }} °C</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
     {% endif %}
+        
+        {% if classifier_result %}
+            <p>{{ classifier_result }}</p>
+        {% endif %}
+        
+        {% if regressor_result %}
+            <p>{{ regressor_result }}</p>
+        {% endif %}
+        
+        <a href="/">Back to Home</a>
+    </div>
 </body>
 </html>

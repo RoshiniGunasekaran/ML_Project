@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Time Series</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container_index">
+        <h1>Predict Time Series</h1>
+        <form action="/process_time_series" method="post">
+            <label for="period">Prediction Period:</label>
+            <select id="period" name="period">
+                <option value="1_week">1 Week</option>
+                <option value="1_month">1 Month</option>
+            </select>
+            <input type="submit" value="Predict Temperature">
+        </form>
+        <a href="/">Back to Home</a>
+    </div>
+</body>
+</html>

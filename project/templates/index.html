@@ -4,15 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Model Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <video autoplay muted loop>
+        <source src="https://cdn.pixabay.com/video/2017/02/28/8016-206146117_large.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
     <div class="container_index">
         <h1>Choose Prediction Type</h1>
-        <form action="/predict_weather" method="get">
+        <form action="/predict_weather">
             <input type="submit" value="Predict Weather">
         </form>
-        <form action="/predict_temperature" method="get">
+        <form action="/predict_temperature">
             <input type="submit" value="Predict Temperature">
+        </form>
+        <form action="/predict_time_series">
+            <input type="submit" value="Predict Time Series">
         </form>
     </div>
 </body>
